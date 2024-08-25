@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: flaskapp-ingress
+  namespace: hw3
+  annotations:
+    kubernetes.io/ingress.class: nginx
+spec:
+  rules:
+    - host: flaskapp.localhost
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: flaskapp-service
+                port:
+                  number: 80
